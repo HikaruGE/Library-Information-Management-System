@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book,Long> {
     Book findOneByFullName(String fullName);
-
+    List<Book> findByAuthors_FullNameContaining(String authors);
 }
+

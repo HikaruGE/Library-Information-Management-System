@@ -2,7 +2,9 @@ package my.library.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -18,10 +20,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
-    private List<Book> borrowedBooks= new ArrayList<>();
+    private Set<Book> borrowedBooks= new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -50,20 +52,19 @@ public class User {
         this.password = password;
     }
 
-    public List<Book> getBorrowedBooks() {
+    public Set<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
 
-    public void setBorrowedBooks(List<Book> borrowedBooks) {
+    public void setBorrowedBooks(Set<Book> borrowedBooks) {
         this.borrowedBooks = borrowedBooks;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
 }

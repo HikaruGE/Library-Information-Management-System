@@ -72,7 +72,7 @@ public class DemoApplication implements CommandLineRunner {
         authorRepository.save(jiangnan);
 
         book1.getAuthors().add(moon);
-        bookRepository.save(book1);
+        bookRepository.saveAndFlush(book1);
         book2.getAuthors().add(moon);
         bookRepository.save(book2);
         book3.getAuthors().add(yunnan);
@@ -121,10 +121,13 @@ public class DemoApplication implements CommandLineRunner {
 //        user2.getBorrowedBooks().add(bookRepository.findOneByFullName("mirror cloud"));
 //        userReposotory.save(user2);
 
-        book1.setBorrower(user1);
-        book2.setBorrower(user1);
-        bookRepository.save(book1);
-        bookRepository.save(book2);
+        Book bookSearch1 = bookRepository.findOneByFullName("mirror origin");
+        bookSearch1.setBorrower(user1);
+        bookRepository.save(bookSearch1);
+
+        Book bookSearch2 = bookRepository.findOneByFullName("mirror cloud");
+        bookSearch2.setBorrower(user1);
+        bookRepository.save(bookSearch2);
 
 
 //        bookRepository.save(book1);

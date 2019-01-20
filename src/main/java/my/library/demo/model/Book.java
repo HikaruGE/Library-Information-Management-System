@@ -2,7 +2,9 @@ package my.library.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -19,7 +21,7 @@ public class Book {
 
 //    (cascade = {CascadeType.MERGE},fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Author> authors = new ArrayList<>();
+    private Set<Author> authors = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User borrower;
@@ -52,11 +54,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 

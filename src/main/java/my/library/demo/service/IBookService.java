@@ -8,4 +8,5 @@ public interface IBookService {
     List<Book> findAll();
 //    void save(Book book, List<Long> authorsId);
     void save(Book book);
+    List<Book> findByAuthor(String author);
 }

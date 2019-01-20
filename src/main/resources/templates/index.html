@@ -1,14 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Security</title>
+    <title>Home</title>
 </head>
 
 <body>
-    <h1>欢迎使用Spring Security!</h1>
-    <p>点击 <a th:href="@{/hello}">这里</a> 打个招呼吧</p>
+
+    <div><!--nav bar-->
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/#}">My Info</a>
+        <a th:href="@{/#}">Record of Loan</a>
+        <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">Book Manage</a>
+        <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">User Manage</a>
+        <h1 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="注销"/>
+        </form>
+    </div>
+
+    <select required onchange="searchSelect(value, 'search')">
+        <option selected="selected" value="1">Author</option>
+        <option value="2">ISBN</option>
+        <option value="3">Name</option>
+    </select>
+    <form th:action="@{/search/author}" method="post" id="search1">
+        <input type="text" name="author" placeholder="Author"/>
+        <input type="submit" value="submit"/>
+    </form>
+    <form th:action="@{/search/ISBN}" method="post" id="search2" style="display:none">
+        <input type="text" name="ISBN" placeholder="ISBN"/>
+        <input type="submit" value="submit"/>
+    </form>
+    <form th:action="@{/search/Name}" method="post" id="search3" style="display:none">
+        <input type="text" name="Name" placeholder="Name"/>
+        <input type="submit" value="submit"/>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>isbn</th>
+            <th>full name</th>
+            <th>authors</th>
+        </tr>
+        <tr th:each="book:${books}">
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.fullName}"></td>
+            <td th:each="author:${book.authors}">
+                <ul>
+                    <li th:text="${author.fullName}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <div sec:authorize="hasAuthority('manager')">
+        管理
+    </div>
+
+    <div sec:authorize="hasAuthority('user')">
+        用户
+    </div>
 
 </body>
+
+<script type="text/javascript">
+    function searchSelect(page, tag){
+        var i = 1;
+        var el;
+        while (el = document.getElementById(tag + i)) {
+            if (i == page)
+                el.style.display = 'block';
+            else
+                el.style.display = 'none';
+            i++;
+        }
+    }
+</script>
 
 </html>
