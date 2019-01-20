@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <form th:action="@{/register}" method="post">
+        <input type="email" name="email" placeholder="Your E-mail" required>
+        <input id = "pw1" type="password" name="password" placeholder="Your password" required>
+        <input id = "pw2" type="password" placeholder="Check password" required onchange="pwCheck()">
+        <button type="submit">Register</button>
+        <p><span>or</span></p>
+        <p><strong>Already have an account? <a th:href="@{/login}">Login</a></strong></p>
+    </form>
+</body>
+
+<script type="text/javascript">
+    function pwCheck(){
+        var pw1 = document.getElementById("pw1").value;
+        var pw2 = document.getElementById("pw2").value;
+        if(pw1!=pw2){
+            alert("Entered passwords differ！");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</html>

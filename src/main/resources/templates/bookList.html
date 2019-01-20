@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>isbn</th>
+            <th>full name</th>
+            <th>borrower</th>
+            <th>authors</th>
+        </tr>
+        <tr th:each="book:${books}">
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.fullName}"></td>
+            <td th:text="${book.borrower == null ? 'Free to Borrow' : book.borrower.username}"></td>
+            <td th:each="author:${book.authors}">
+                <ul>
+                    <li th:text="${author.fullName}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <a th:href="@{/addBookPage}">add</a>
+</body>
+</html>
