@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AuthorService implements IAuthorService {
+public class AuthorServiceImpl implements IAuthorService {
 
     @Autowired
     AuthorRepository authorRepository;

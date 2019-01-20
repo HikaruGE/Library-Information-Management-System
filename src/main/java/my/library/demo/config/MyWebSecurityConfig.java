@@ -53,11 +53,11 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/","/register").permitAll()
+                .antMatchers("/","/registerPage","/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error")
                 .permitAll()
                 .and()
             .logout()
