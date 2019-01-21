@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book List</title>
+    <title>Search Result</title>
 </head>
 <body>
+    <div th:replace="index.html::navbar"></div>
+
     <table border="1">
         <tr>
             <th>isbn</th>
             <th>full name</th>
-            <th>borrower</th>
             <th>authors</th>
+            <th>status</th>
         </tr>
         <tr th:each="book:${books}">
             <td th:text="${book.isbn}"></td>
             <td th:text="${book.title}"></td>
-            <td th:text="${book.borrower == null ? 'Free to Borrow' : book.borrower.username}"></td>
-            <td th:each="author:${book.authors}">
+            <td>
                 <ul>
-                    <li th:text="${author.title}"></li>
+                    <li th:each="author:${book.authors}" th:text="${author.fullName}"></li>
                 </ul>
             </td>
+            <td th:text="${book.borrower==null?'Avalible':'Borrowed'}"></td>
         </tr>
     </table>
-
-    <a th:href="@{/addBookPage}">add</a>
 </body>
 </html>

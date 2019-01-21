@@ -34,5 +34,15 @@ public class BookServiceImpl implements IBookService {
         return bookList;
     }
 
-
+    @Override
+    public List<Book> search(String keyWord, String type) {
+        if(type.equals("a")){
+            return bookRepository.findByAuthors_FullNameContaining(keyWord);
+        }else if(type.equals("t")){
+            return bookRepository.findByTitleContaining(keyWord);
+        }else if(type.equals("i")){
+            return bookRepository.findByIsbnContaining(keyWord);
+        }
+        return null;
+    }
 }

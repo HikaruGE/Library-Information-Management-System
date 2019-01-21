@@ -39,19 +39,19 @@ public class DemoApplication implements CommandLineRunner {
         authorRepository.deleteAllInBatch();
 
         Book book1 = new Book();
-        book1.setFullName("mirror origin");
+        book1.setTitle("mirror origin");
         book1.setIsbn("ISBN-98076");
         Book book2 = new Book();
-        book2.setFullName("mirror cloud");
+        book2.setTitle("mirror cloud");
         book2.setIsbn("ISBN-98072");
         Book book3 = new Book();
-        book3.setFullName("two wives one husband");
+        book3.setTitle("two wives one husband");
         book3.setIsbn("ISBN-54213");
         Book book4 = new Book();
-        book4.setFullName("wind and rose");
+        book4.setTitle("wind and rose");
         book4.setIsbn("ISBN-31521");
         Book book5 = new Book();
-        book5.setFullName("jingjiwangzuo");
+        book5.setTitle("jingjiwangzuo");
         book5.setIsbn("ISBN-35331");
 
         bookRepository.save(book1);
@@ -104,7 +104,8 @@ public class DemoApplication implements CommandLineRunner {
 
         User user1 = new User();
         user1.setUsername("tt");
-        user1.setNickname("Nick");
+        user1.setEmail("Nick@gmail.com");
+        user1.setPhone("786547536");
         user1.setPassword("123");
         user1.getRoles().add(manager);
         user1.getRoles().add(user);
@@ -115,7 +116,8 @@ public class DemoApplication implements CommandLineRunner {
 
         User user2 = new User();
         user2.setUsername("ss");
-        user1.setNickname("Eric");
+        user2.setEmail("Eric@gmail.com");
+        user2.setPhone("873546231");
         user2.setPassword("456");
         user2.getRoles().add(user);
         userRepository.save(user2);
@@ -123,11 +125,11 @@ public class DemoApplication implements CommandLineRunner {
 //        user2.getBorrowedBooks().add(bookRepository.findOneByFullName("mirror cloud"));
 //        userReposotory.save(user2);
 
-        Book bookSearch1 = bookRepository.findOneByFullName("mirror origin");
+        Book bookSearch1 = bookRepository.findBookByTitle("mirror origin");
         bookSearch1.setBorrower(user1);
         bookRepository.save(bookSearch1);
 
-        Book bookSearch2 = bookRepository.findOneByFullName("mirror cloud");
+        Book bookSearch2 = bookRepository.findBookByTitle("mirror cloud");
         bookSearch2.setBorrower(user1);
         bookRepository.save(bookSearch2);
 
@@ -150,7 +152,7 @@ public class DemoApplication implements CommandLineRunner {
 
 //        Book b = bookRepository.findOneByFullName("mirror origin");
 //        Author xiaoming = new Author();
-//        xiaoming.setFullName("xiaoming");
+//        xiaoming.setTitle("xiaoming");
 //        b.getAuthors().add(xiaoming);
 //        bookRepository.save(b);
     }

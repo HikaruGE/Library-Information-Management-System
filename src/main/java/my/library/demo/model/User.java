@@ -1,9 +1,7 @@
 package my.library.demo.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,10 +15,13 @@ public class User {
     private String username;
 
     @Column
-    private String nickname;
+    private String password;
 
     @Column
-    private String password;
+    private String email;
+
+    @Column
+    private String phone;
 
     @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
     private Set<Book> borrowedBooks= new HashSet<>();
@@ -47,20 +48,28 @@ public class User {
         this.username = username;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Set<Book> getBorrowedBooks() {

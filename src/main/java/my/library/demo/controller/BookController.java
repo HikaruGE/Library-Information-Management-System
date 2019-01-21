@@ -32,7 +32,7 @@ public class BookController {
         List<Author> authors = authorService.findAll();
 //        for(Author a:authors){
 //            System.out.println(a.getId());
-//            System.out.println(a.getFullName());
+//            System.out.println(a.getTitle());
 //        }
         model.addAttribute("authors",authors);
         return "addBook";
@@ -44,7 +44,7 @@ public class BookController {
 //            System.out.println(id);
 //        }
 //    public String addBook() {
-//        System.out.println(book.getFullName());
+//        System.out.println(book.getTitle());
         bookService.save(book);
         return "redirect:/book";
     }

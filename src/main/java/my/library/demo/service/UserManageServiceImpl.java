@@ -42,7 +42,8 @@ public class UserManageServiceImpl implements IUserManageService {
     @Override
     public void editUserInfo(User user, Long id) {
         User u = userRepository.findUserById(id);
-        u.setNickname(user.getNickname());
+        u.setEmail(user.getEmail());
+        u.setPhone(user.getPhone());
         userRepository.saveAndFlush(u);
     }
 

@@ -29,7 +29,7 @@ public class DemoApplicationTests {
 
     @Test
     public void contextLoads() {
-        Book b = bookRepository.findOneByFullName("mirror origin");
+        Book b = bookRepository.findBookByTitle("mirror origin");
         Author xiaoming = new Author();
         xiaoming.setFullName("xiaoming");
         b.getAuthors().add(xiaoming);

@@ -14,46 +14,25 @@
         <a th:href="@{/#}">Record of Loan</a>
         <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">Book Manage</a>
         <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">User Manage</a>
-        <h1 th:inline="text">Welcome, [[${user.nickname}]]!</h1>
+        <!--<span sec:authentication="name"></span>-->
+        <h1>Welcome, <span sec:authentication="name"></span>!</h1>
         <form th:action="@{/logout}" method="post">
-            <input type="submit" value="注销"/>
+            <input type="submit" value="Logout"/>
         </form>
     </div>
 
-    <select required onchange="searchSelect(value, 'search')">
-        <option selected="selected" value="1">Author</option>
-        <option value="2">ISBN</option>
-        <option value="3">Name</option>
-    </select>
-    <form th:action="@{/search/author}" method="post" id="search1">
-        <input type="text" name="author" placeholder="Author"/>
-        <input type="submit" value="submit"/>
+    <form th:action="@{/search}">
+        <div>
+            <div>
+                <input name="keyWord" type="text"/><input type="submit" value="Search"/>
+            </div>
+            <div>
+                <input type="radio" name="searchType" value="a" id="author" checked/><label for="author">Author</label>
+                <input type="radio" name="searchType" value="t" id="title" /><label for="title">Title</label>
+                <input type="radio" name="searchType" value="i" id="isbn" /><label for="isbn">ISBN</label>
+            </div>
+        </div>
     </form>
-    <form th:action="@{/search/isbn}" method="post" id="search2" style="display:none">
-        <input type="text" name="isbn" placeholder="ISBN"/>
-        <input type="submit" value="submit"/>
-    </form>
-    <form th:action="@{/search/name}" method="post" id="search3" style="display:none">
-        <input type="text" name="name" placeholder="Name"/>
-        <input type="submit" value="submit"/>
-    </form>
-
-    <table border="1">
-        <tr>
-            <th>isbn</th>
-            <th>full name</th>
-            <th>authors</th>
-        </tr>
-        <tr th:each="book:${books}">
-            <td th:text="${book.isbn}"></td>
-            <td th:text="${book.fullName}"></td>
-            <td>
-                <ul>
-                    <li th:each="author:${book.authors}" th:text="${author.fullName}"></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
 
     <div sec:authorize="hasAuthority('manager')">
         管理
@@ -65,18 +44,18 @@
 
 </body>
 
-<script type="text/javascript">
-    function searchSelect(page, tag){
-        var i = 1;
-        var el;
-        while (el = document.getElementById(tag + i)) {
-            if (i == page)
-                el.style.display = 'block';
-            else
-                el.style.display = 'none';
-            i++;
-        }
-    }
-</script>
+<!--<script type="text/javascript">-->
+    <!--function searchSelect(page, tag){-->
+        <!--var i = 1;-->
+        <!--var el;-->
+        <!--while (el = document.getElementById(tag + i)) {-->
+            <!--if (i == page)-->
+                <!--el.style.display = 'block';-->
+            <!--else-->
+                <!--el.style.display = 'none';-->
+            <!--i++;-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
 
 </html>

@@ -1,9 +1,7 @@
 package my.library.demo.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +12,7 @@ public class Book {
     private Long id;
 
     @Column
-    private String fullName;
+    private String title;
 
     @Column
     private String isbn;
@@ -38,12 +36,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getIsbn() {

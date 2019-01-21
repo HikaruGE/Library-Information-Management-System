@@ -15,10 +15,10 @@
         </tr>
         <tr th:each="book:${books}">
             <td th:text="${book.isbn}"></td>
-            <td th:text="${book.fullName}"></td>
+            <td th:text="${book.title}"></td>
             <td th:each="author:${book.authors}">
                 <ul>
-                    <li th:text="${author.fullName}"></li>
+                    <li th:text="${author.title}"></li>
                 </ul>
             </td>
         </tr>
@@ -32,7 +32,7 @@
         </tr>
         <tr th:each="book:${books}">
             <td th:text="${book.isbn}"></td>
-            <td th:text="${book.fullName}"></td>
+            <td th:text="${book.title}"></td>
             <td th:text="${book.borrower == null ? 'Free to Borrow' : book.borrower.username}"></td>
         </tr>
     </table>
@@ -45,10 +45,10 @@
             <!--<th>books</th>-->
         <!--</tr>-->
         <!--<tr th:each="author:${authors}">-->
-            <!--<td th:text="${author.fullName}"></td>-->
+            <!--<td th:text="${author.title}"></td>-->
             <!--<td th:each="book:${author.books}">-->
                 <!--<ul>-->
-                    <!--<li th:text="${book.fullName}"></li>-->
+                    <!--<li th:text="${book.title}"></li>-->
                 <!--</ul>-->
             <!--</td>-->
         <!--</tr>-->

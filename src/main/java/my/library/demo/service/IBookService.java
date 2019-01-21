@@ -9,4 +9,5 @@ public interface IBookService {
 //    void save(Book book, List<Long> authorsId);
     void save(Book book);
     List<Book> findByAuthor(String author);
+    List<Book> search(String keyWord, String type);
 }
