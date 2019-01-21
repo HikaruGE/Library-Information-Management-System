@@ -8,13 +8,13 @@
 
 <body>
 
-    <div><!--nav bar-->
+    <div th:fragment="navbar"><!--nav bar-->
         <a th:href="@{/}">Home</a>
-        <a th:href="@{/#}">My Info</a>
+        <a th:href="@{/userInfo}">My Info</a>
         <a th:href="@{/#}">Record of Loan</a>
         <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">Book Manage</a>
         <a th:href="@{/#}" sec:authorize="hasAuthority('manager')">User Manage</a>
-        <h1 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]!</h1>
+        <h1 th:inline="text">Welcome, [[${user.nickname}]]!</h1>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="注销"/>
         </form>
@@ -29,12 +29,12 @@
         <input type="text" name="author" placeholder="Author"/>
         <input type="submit" value="submit"/>
     </form>
-    <form th:action="@{/search/ISBN}" method="post" id="search2" style="display:none">
-        <input type="text" name="ISBN" placeholder="ISBN"/>
+    <form th:action="@{/search/isbn}" method="post" id="search2" style="display:none">
+        <input type="text" name="isbn" placeholder="ISBN"/>
         <input type="submit" value="submit"/>
     </form>
-    <form th:action="@{/search/Name}" method="post" id="search3" style="display:none">
-        <input type="text" name="Name" placeholder="Name"/>
+    <form th:action="@{/search/name}" method="post" id="search3" style="display:none">
+        <input type="text" name="name" placeholder="Name"/>
         <input type="submit" value="submit"/>
     </form>
 
@@ -47,9 +47,9 @@
         <tr th:each="book:${books}">
             <td th:text="${book.isbn}"></td>
             <td th:text="${book.fullName}"></td>
-            <td th:each="author:${book.authors}">
+            <td>
                 <ul>
-                    <li th:text="${author.fullName}"></li>
+                    <li th:each="author:${book.authors}" th:text="${author.fullName}"></li>
                 </ul>
             </td>
         </tr>

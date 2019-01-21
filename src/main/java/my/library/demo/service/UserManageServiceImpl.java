@@ -3,6 +3,8 @@ package my.library.demo.service;
 import my.library.demo.model.User;
 import my.library.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,5 +32,22 @@ public class UserManageServiceImpl implements IUserManageService {
             userRepository.save(user);
             return true;
         }
+    }
+
+    @Override
+    public User searchUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public void editUserInfo(User user, Long id) {
+        User u = userRepository.findUserById(id);
+        u.setNickname(user.getNickname());
+        userRepository.saveAndFlush(u);
+    }
+
+    @Override
+    public User searchUserByName(String name) {
+        return userRepository.findByUsername(name);
     }
 }

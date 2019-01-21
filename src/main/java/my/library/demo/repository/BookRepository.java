@@ -10,5 +10,7 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book,Long> {
     Book findOneByFullName(String fullName);
     List<Book> findByAuthors_FullNameContaining(String authors);
+    List<Book> findByIsbnContaining(String isbn);
+    List<Book> findByFullNameContaining(String fullName);
 }
 

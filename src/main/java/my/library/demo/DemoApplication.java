@@ -104,6 +104,7 @@ public class DemoApplication implements CommandLineRunner {
 
         User user1 = new User();
         user1.setUsername("tt");
+        user1.setNickname("Nick");
         user1.setPassword("123");
         user1.getRoles().add(manager);
         user1.getRoles().add(user);
@@ -114,6 +115,7 @@ public class DemoApplication implements CommandLineRunner {
 
         User user2 = new User();
         user2.setUsername("ss");
+        user1.setNickname("Eric");
         user2.setPassword("456");
         user2.getRoles().add(user);
         userRepository.save(user2);

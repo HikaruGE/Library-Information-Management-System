@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Info</title>
+</head>
+<body>
+    <div th:replace="index.html::navbar"></div>
+
+    <form th:action="@{/userInfo/}+${user.id}" method="post" th:method="PUT">
+        <table border="1">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="${user.username}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Nickname:</td>
+                <td><input type="text" th:field="${user.nickname}" /></td>
+            </tr>
+            <tr>
+                <td>Authority:</td>
+                <td>
+                    <ul>
+                        <li th:each="role:${user.roles}" th:text="${role.name}"></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"/></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

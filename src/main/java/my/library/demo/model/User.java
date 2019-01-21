@@ -17,6 +17,9 @@ public class User {
     private String username;
 
     @Column
+    private String nickname;
+
+    @Column
     private String password;
 
     @OneToMany(mappedBy = "borrower",fetch = FetchType.LAZY)
@@ -42,6 +45,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+<body>
+    <div th:replace="index.html::navbar"></div>
+
+
+    <table border="1">
+        <tr>
+            <td>Name:</td>
+            <td th:text="${user.username}"></td>
+        </tr>
+        <tr>
+            <td>Authority:</td>
+            <td>
+                <ul>
+                    <li th:each="role:${user.roles}" th:text="${role.name}"></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/userInfo/edit}">Edit</a></td>
+            <td></td>
+        </tr>
+    </table>
+
+</body>
+</html>
